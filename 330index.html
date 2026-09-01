@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>App Prototype</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          system-ui,
+          Roboto,
+          sans-serif;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+      }
+
+      body {
+        background-color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .app-container {
+        width: 393px;
+        height: 852px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 48px;
+        background-color: #111111;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      }
+
+      .screen-page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .screen-page.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      #page-home {
+        background-image: url('Image/1_Home.png');
+      }
+      #page-1-1E {
+        background-image: url('Image/1_1E.png');
+      }
+      #page-1-2E {
+        background-image: url('Image/1_2E.png');
+      }
+      #page-1-3E {
+        background-image: url('Image/1_3E.png');
+      }
+      #page-1-4E {
+        background-image: url('Image/1_4E.png');
+      }
+      #page-1-5E {
+        background-image: url('Image/1_5E.png');
+      }
+      #page-1-6E {
+        background-image: url('Image/1_6E.png');
+      }
+      #page-1-7E {
+        background-image: url('Image/1_7E.png');
+      }
+      #page-1-8E {
+        background-image: url('Image/1_8E.png');
+      }
+      #page-1-9E {
+        background-image: url('Image/1_9E.png');
+      }
+      #page-1-10E {
+        background-image: url('Image/1_10E.png');
+      }
+      #page-1-fin-E {
+        background-image: url('Image/1_fin_E.png');
+      }
+      #page-1-fin-E2 {
+        background-image: url('Image/1_fin_E2.png');
+      }
+      #page-1-other-E1 {
+        background-image: url('Image/1_other_E1.png');
+      }
+      #page-1-other-E2 {
+        background-image: url('Image/1_other_E2.png');
+      }
+      #page-1-other-E3 {
+        background-image: url('Image/1_other_E3.png');
+      }
+      #page-1-other-E4 {
+        background-image: url('Image/1_other_E4.png');
+      }
+      #page-1-other-E5 {
+        background-image: url('Image/1_other_E5.png');
+      }
+      #page-1-other-E6 {
+        background-image: url('Image/1_other_E6.png');
+      }
+      #page-1-other-E7 {
+        background-image: url('Image/1_other_E7.png');
+      }
+      #page-1-other-E8 {
+        background-image: url('Image/1_other_E8.png');
+      }
+      #page-1-other-E9 {
+        background-image: url('Image/1_other_E9.png');
+      }
+      #page-1-other-E10 {
+        background-image: url('Image/1_other_E10.png');
+      }
+      #page-1-other-E11 {
+        background-image: url('Image/1_other_E11.png');
+      }
+      #page-2-E {
+        background-image: url('Image/2_E.png');
+      }
+      #page-5-mypage {
+        background-image: url('Image/5_mypage.png');
+      }
+
+      .click-trigger-main {
+        position: absolute;
+        top: 130px;
+        left: 20px;
+        width: 353px;
+        height: 404px;
+        border-radius: 50px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .click-trigger-sub {
+        position: absolute;
+        top: 400px;
+        left: 206px;
+        width: 167px;
+        height: 134px;
+        border-radius: 40px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 5;
+      }
+
+      .svg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+      }
+
+      .svg-btn {
+        cursor: pointer;
+        fill: transparent;
+        stroke: none;
+      }
+
+      .prev-step-btn {
+        position: absolute;
+        top: 715px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .fin-btn1 {
+        position: absolute;
+        left: 20px;
+        top: 755px;
+        width: 167px;
+        height: 65px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .fin-btn2 {
+        position: absolute;
+        left: 206px;
+        top: 755px;
+        width: 167px;
+        height: 65px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .fin2-btn1 {
+        position: absolute;
+        left: 60px;
+        top: 471px;
+        width: 71px;
+        height: 32px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .fin2-btn2 {
+        position: absolute;
+        left: 262px;
+        top: 471px;
+        width: 71px;
+        height: 32px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 15;
+      }
+
+      .toggle-btn {
+        position: absolute;
+        height: 38px;
+        border-radius: 10px;
+        background: transparent;
+        color: transparent;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+        z-index: 5;
+      }
+
+      .toggle-btn.selected {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+      }
+
+      .row1-btn1 {
+        width: 77px;
+        top: 254px;
+        left: 30px;
+      }
+      .row1-btn2 {
+        width: 77px;
+        top: 254px;
+        left: 115px;
+      }
+      .row1-btn3 {
+        width: 77px;
+        top: 254px;
+        left: 200px;
+      }
+      .row1-btn4 {
+        width: 77px;
+        top: 254px;
+        left: 286px;
+      }
+
+      .row2-btn1 {
+        width: 77px;
+        top: 302px;
+        left: 30px;
+      }
+      .row2-btn2 {
+        width: 77px;
+        top: 302px;
+        left: 115px;
+      }
+      .row2-btn3 {
+        width: 77px;
+        top: 302px;
+        left: 200px;
+      }
+      .row2-btn4 {
+        width: 77px;
+        top: 302px;
+        left: 286px;
+      }
+
+      .row3-btn1 {
+        width: 72px;
+        top: 394px;
+        left: 30px;
+      }
+      .row3-btn2 {
+        width: 72px;
+        top: 394px;
+        left: 110px;
+      }
+      .row3-btn3 {
+        width: 83px;
+        top: 394px;
+        left: 190px;
+      }
+      .row3-btn4 {
+        width: 82px;
+        top: 394px;
+        left: 280px;
+      }
+
+      .row4-btn1 {
+        width: 84px;
+        top: 442px;
+        left: 30px;
+      }
+      .row4-btn2 {
+        width: 75px;
+        top: 442px;
+        left: 122px;
+      }
+      .row4-btn3 {
+        width: 75px;
+        top: 442px;
+        left: 205px;
+      }
+      .row4-btn4 {
+        width: 75px;
+        top: 442px;
+        left: 288px;
+      }
+
+      .row5-btn1 {
+        width: 77px;
+        top: 534px;
+        left: 30px;
+      }
+      .row5-btn2 {
+        width: 77px;
+        top: 534px;
+        left: 115px;
+      }
+      .row5-btn3 {
+        width: 77px;
+        top: 534px;
+        left: 200px;
+      }
+      .row5-btn4 {
+        width: 77px;
+        top: 534px;
+        left: 286px;
+      }
+
+      .row6-btn1 {
+        width: 70px;
+        top: 582px;
+        left: 30px;
+      }
+      .row6-btn2 {
+        width: 80px;
+        top: 582px;
+        left: 108px;
+      }
+      .row6-btn3 {
+        width: 80px;
+        top: 582px;
+        left: 198px;
+      }
+      .row6-btn4 {
+        width: 80px;
+        top: 582px;
+        left: 283px;
+      }
+
+      .row7-btn1 {
+        width: 75px;
+        top: 674px;
+        left: 30px;
+      }
+      .row7-btn2 {
+        width: 75px;
+        top: 674px;
+        left: 113px;
+      }
+      .row7-btn3 {
+        width: 84px;
+        top: 674px;
+        left: 196px;
+      }
+      .row7-btn4 {
+        width: 75px;
+        top: 674px;
+        left: 288px;
+      }
+
+      .row8-btn1 {
+        width: 77px;
+        top: 722px;
+        left: 30px;
+      }
+      .row8-btn2 {
+        width: 77px;
+        top: 722px;
+        left: 115px;
+      }
+      .row8-btn3 {
+        width: 77px;
+        top: 722px;
+        left: 200px;
+      }
+      .row8-btn4 {
+        width: 77px;
+        top: 722px;
+        left: 286px;
+      }
+
+      .transparent-box {
+        position: absolute;
+        width: 333px;
+        height: 32px;
+        top: 780px;
+        left: 30px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 5;
+      }
+
+      .common-btn {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 15px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      .btn-back {
+        top: 50px;
+        left: 30px;
+      }
+      .btn-menu {
+        top: 50px;
+        right: 30px;
+      }
+
+      .menu-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 184px;
+        background-image: url('Image/1_menu.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-in-out;
+        z-index: 30;
+      }
+
+      .menu-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="screen-page active" id="page-home">
+        <div class="click-trigger-main" onclick="showPage('page-1-1E')"></div>
+        <div class="click-trigger-sub" onclick="showPage('page-2-E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-1E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-2E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-2E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-2E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-2E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-2E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+      </div>
+
+      <div class="screen-page" id="page-1-2E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-3E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-3E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-3E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-3E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-3E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-1E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-3E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-4E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-4E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-4E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-4E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-4E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-2E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-4E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-5E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-5E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-5E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-5E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-5E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-3E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-5E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-6E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-6E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-6E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-6E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-6E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-4E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-6E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-7E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-7E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-7E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-7E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-7E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-5E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-7E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-8E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-8E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-8E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-8E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-8E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-6E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-8E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-9E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-9E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-9E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-9E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-9E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-7E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-9E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-10E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-10E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-10E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-10E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-10E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-8E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-10E">
+        <svg class="svg-overlay" viewBox="0 0 393 852">
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-fin-E')"
+            d="M 196,335 C 220,335 235,355 230,400 C 225,435 167,435 162,400 C 157,355 172,335 196,335 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-fin-E')"
+            d="M 270,405 C 310,415 325,445 305,475 C 285,505 245,485 240,455 C 235,425 250,400 270,405 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-fin-E')"
+            d="M 275,495 C 315,505 315,545 295,575 C 275,605 235,575 240,540 C 245,505 255,490 275,495 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-fin-E')"
+            d="M 196,560 C 220,560 235,580 230,625 C 225,660 167,660 162,625 C 157,580 172,560 196,560 Z"
+          />
+          <path
+            class="svg-btn"
+            onclick="showPage('page-1-fin-E')"
+            d="M 105,505 C 125,500 135,515 140,550 C 145,585 105,615 85,585 C 65,555 65,515 105,505 Z"
+          />
+        </svg>
+        <div class="prev-step-btn" onclick="showPage('page-1-9E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-fin-E">
+        <div class="fin-btn1" onclick="showPage('page-1-fin-E2')"></div>
+        <div class="fin-btn2" onclick="showPage('page-1-other-E')"></div>
+      </div>
+
+      <div class="screen-page" id="page-1-fin-E2">
+        <div class="fin2-btn1" onclick="showPage('page-1-fin-E')"></div>
+        <div class="fin2-btn2" onclick="showPage('page-5-mypage')"></div>
+      </div>
+
+      <div
+        class="screen-page"
+        id="page-1-other-E"
+        style="background-color: #111111; overflow: hidden; position: relative"
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 393px;
+            height: 852px;
+            background-image: url('Image/1_other_1.png');
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            z-index: 1;
+          "
+        ></div>
+
+        <div
+          style="
+            position: absolute;
+            top: 120px;
+            left: 0;
+            width: 393px;
+            height: 732px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            z-index: 2;
+          "
+        >
+          <div
+            style="
+              width: 393px;
+              padding: 0 20px 80px 20px;
+              box-sizing: border-box;
+              display: flex;
+              justify-content: center;
+              position: relative;
+            "
+          >
+            <div
+              style="
+                width: 353px;
+                height: 1140px;
+                background-image: url('Image/1_other_E.png');
+                background-size: 353px 1140px;
+                background-position: top center;
+                background-repeat: no-repeat;
+              "
+            ></div>
+
+            <div
+              style="
+                position: absolute;
+                top: 25px;
+                left: 20px;
+                width: 353px;
+                display: grid;
+                grid-template-columns: 169px 169px;
+                column-gap: 15px;
+                row-gap: 20px;
+                z-index: 5;
+              "
+            >
+              <div
+                onclick="showPage('page-1-other-E1')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div
+                onclick="showPage('page-1-other-E2')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+
+              <div
+                onclick="showPage('page-1-other-E3')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div
+                onclick="showPage('page-1-other-E4')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+
+              <div
+                onclick="showPage('page-1-other-E5')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div
+                onclick="showPage('page-1-other-E6')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+
+              <div
+                onclick="showPage('page-1-other-E7')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div
+                onclick="showPage('page-1-other-E8')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+
+              <div
+                onclick="showPage('page-1-other-E9')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div
+                onclick="showPage('page-1-other-E10')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+
+              <div
+                onclick="showPage('page-1-other-E11')"
+                style="
+                  width: 169px;
+                  height: 165px;
+                  border-radius: 24px;
+                  background: transparent;
+                  cursor: pointer;
+                "
+              ></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-page" id="page-1-other-E1"></div>
+      <div class="screen-page" id="page-1-other-E2"></div>
+      <div class="screen-page" id="page-1-other-E3"></div>
+      <div class="screen-page" id="page-1-other-E4"></div>
+      <div class="screen-page" id="page-1-other-E5"></div>
+      <div class="screen-page" id="page-1-other-E6"></div>
+      <div class="screen-page" id="page-1-other-E7"></div>
+      <div class="screen-page" id="page-1-other-E8"></div>
+      <div class="screen-page" id="page-1-other-E9"></div>
+      <div class="screen-page" id="page-1-other-E10"></div>
+      <div class="screen-page" id="page-1-other-E11"></div>
+
+      <div class="screen-page" id="page-2-E">
+        <div class="toggle-btn row1-btn1" onclick="toggleButton(this)">
+          기쁨
+        </div>
+        <div class="toggle-btn row1-btn2" onclick="toggleButton(this)">
+          감사
+        </div>
+        <div class="toggle-btn row1-btn3" onclick="toggleButton(this)">
+          평온
+        </div>
+        <div class="toggle-btn row1-btn4" onclick="toggleButton(this)">
+          행복
+        </div>
+
+        <div class="toggle-btn row2-btn1" onclick="toggleButton(this)">
+          설렘
+        </div>
+        <div class="toggle-btn row2-btn2" onclick="toggleButton(this)">
+          뿌듯
+        </div>
+        <div class="toggle-btn row2-btn3" onclick="toggleButton(this)">
+          재미
+        </div>
+        <div class="toggle-btn row2-btn4" onclick="toggleButton(this)">
+          빛남
+        </div>
+
+        <div class="toggle-btn row3-btn1" onclick="toggleButton(this)">
+          우울
+        </div>
+        <div class="toggle-btn row3-btn2" onclick="toggleButton(this)">
+          불안
+        </div>
+        <div class="toggle-btn row3-btn3" onclick="toggleButton(this)">
+          외로움
+        </div>
+        <div class="toggle-btn row3-btn4" onclick="toggleButton(this)">
+          죄책감
+        </div>
+
+        <div class="toggle-btn row4-btn1" onclick="toggleButton(this)">
+          무기력
+        </div>
+        <div class="toggle-btn row4-btn2" onclick="toggleButton(this)">
+          질투
+        </div>
+        <div class="toggle-btn row4-btn3" onclick="toggleButton(this)">
+          공허
+        </div>
+        <div class="toggle-btn row4-btn4" onclick="toggleButton(this)">
+          흐림
+        </div>
+
+        <div class="toggle-btn row5-btn1" onclick="toggleButton(this)">
+          피로
+        </div>
+        <div class="toggle-btn row5-btn2" onclick="toggleButton(this)">
+          고갈
+        </div>
+        <div class="toggle-btn row5-btn3" onclick="toggleButton(this)">
+          지침
+        </div>
+        <div class="toggle-btn row5-btn4" onclick="toggleButton(this)">
+          권태
+        </div>
+
+        <div class="toggle-btn row6-btn1" onclick="toggleButton(this)">
+          먹먹
+        </div>
+        <div class="toggle-btn row6-btn2" onclick="toggleButton(this)">
+          지루함
+        </div>
+        <div class="toggle-btn row6-btn3" onclick="toggleButton(this)">
+          과부하
+        </div>
+        <div class="toggle-btn row6-btn4" onclick="toggleButton(this)">
+          시큰둥
+        </div>
+
+        <div class="toggle-btn row7-btn1" onclick="toggleButton(this)">
+          혼란
+        </div>
+        <div class="toggle-btn row7-btn2" onclick="toggleButton(this)">
+          당황
+        </div>
+        <div class="toggle-btn row7-btn3" onclick="toggleButton(this)">
+          호기심
+        </div>
+        <div class="toggle-btn row7-btn4" onclick="toggleButton(this)">
+          의문
+        </div>
+
+        <div class="toggle-btn row8-btn1" onclick="toggleButton(this)">
+          긴장
+        </div>
+        <div class="toggle-btn row8-btn2" onclick="toggleButton(this)">
+          어색
+        </div>
+        <div class="toggle-btn row8-btn3" onclick="toggleButton(this)">
+          충격
+        </div>
+        <div class="toggle-btn row8-btn4" onclick="toggleButton(this)">
+          복잡
+        </div>
+
+        <div class="transparent-box" onclick="showPage('page-5-mypage')"></div>
+      </div>
+
+      <div class="screen-page" id="page-5-mypage"></div>
+
+      <div class="menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
+    </div>
+
+    <script>
+      const pageHistory = ['page-home'];
+      let currentOverlayOpen = false;
+
+      document.querySelectorAll('.screen-page').forEach((page) => {
+        const backBtn = document.createElement('div');
+        backBtn.className = 'common-btn btn-back';
+        backBtn.onclick = (e) => {
+          e.stopPropagation();
+          goBack();
+        };
+
+        const menuBtn = document.createElement('div');
+        menuBtn.className = 'common-btn btn-menu';
+        menuBtn.onclick = (e) => {
+          e.stopPropagation();
+          openMenu();
+        };
+
+        page.appendChild(backBtn);
+        page.appendChild(menuBtn);
+      });
+
+      function toggleButton(el) {
+        el.classList.toggle('selected');
+      }
+
+      function showPage(targetId) {
+        const currentPageId = pageHistory[pageHistory.length - 1];
+        if (currentPageId === targetId) return;
+
+        closeMenu();
+
+        const pages = document.querySelectorAll('.screen-page');
+        pages.forEach((page) => page.classList.remove('active'));
+
+        document.getElementById(targetId).classList.add('active');
+        pageHistory.push(targetId);
+      }
+
+      function goBack() {
+        if (currentOverlayOpen) {
+          closeMenu();
+          return;
+        }
+
+        if (pageHistory.length > 1) {
+          pageHistory.pop();
+          const previousPageId = pageHistory[pageHistory.length - 1];
+
+          const pages = document.querySelectorAll('.screen-page');
+          pages.forEach((page) => page.classList.remove('active'));
+
+          document.getElementById(previousPageId).classList.add('active');
+        }
+      }
+
+      function openMenu() {
+        document.getElementById('menu-overlay').classList.add('active');
+        currentOverlayOpen = true;
+      }
+
+      function closeMenu() {
+        document.getElementById('menu-overlay').classList.remove('active');
+        currentOverlayOpen = false;
+      }
+    </script>
+  </body>
+</html>
